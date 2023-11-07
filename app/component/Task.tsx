@@ -1,21 +1,42 @@
 import React, { useState } from "react";
-import { Card } from "flowbite-react";
 import { Label, Textarea, Button } from "flowbite-react";
+import { useLoaderData, useFetcher } from "@remix-run/react";
 function Task() {
-  let img_src =
-    "https://www.researchgate.net/publication/220390292/figure/fig5/AS:669089911541766@1536534874234/Sample-copy-of-the-original-Tibetan-text.ppm";
-  let text = "kajsdifjaoisjdfoiajsoidfjaoisjdfioajsdoifjaoidfjoaisjdfoija";
-  let [textInput, setInput] = useState(text);
+  let { task } = useLoaderData();
+  let [textInput, setInput] = useState(task?.text);
+
+  let fetcher = useFetcher();
+
+  function handleSubmit() {
+    fetcher.submit(
+      {
+        _action: "accept_task",
+        text: textInput,
+        taskId: task.id,
+      },
+      { method: "POST" }
+    );
+  }
+  function handleReject() {
+    fetcher.submit(
+      {
+        _action: "reject_task",
+        taskId: task.id,
+      },
+      { method: "POST" }
+    );
+  }
+  if (!task) return <div>thanks the work is done</div>;
   return (
     <div className="h-full w-full flex justify-center items-center">
       <div className="flex flex-1 max-w-4xl rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col">
         <img
-          src={img_src}
+          src={task.imageUrl}
           alt="Google"
-          className="max-h-[40vh] object-contain"
+          className="h-[40vh] w-full object-contain"
         />
         <div className="w-full">
-          <div className="mb-2 block w-6/12 mx-auto">
+          <div className="mb-2 block w-6/12 mx-auto font-Elsie">
             <Label htmlFor="comment" value="transcribe" />
           </div>
           <Textarea
@@ -28,9 +49,19 @@ function Task() {
             onChange={(e) => setInput(e.target.value)}
           />
         </div>
-        <div className="flex gap-3 justify-around items-center mt-2">
-          <Button className="bg-green-500 hover:bg-green-400">Submit</Button>
-          <Button className="bg-red-500 hover:bg-red-400">Reject</Button>
+        <div className="flex gap-3 justify-around items-center my-2">
+          <Button
+            className="bg-green-500 hover:bg-green-400"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+          <Button
+            className="bg-red-500 hover:bg-red-400"
+            onClick={handleReject}
+          >
+            Reject
+          </Button>
         </div>
       </div>
     </div>

@@ -145,7 +145,7 @@ __export(root_exports, {
 var import_react2 = require("@remix-run/react");
 
 // app/style/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-CIGXJHDD.css";
+var tailwind_default = "/build/_assets/tailwind-NP744Q3J.css";
 
 // app/style/global.css
 var global_default = "/build/_assets/global-VACHWU72.css";
@@ -209,38 +209,59 @@ function App() {
 // app/routes/_index.tsx
 var index_exports = {};
 __export(index_exports, {
-  default: () => index_default
+  action: () => action,
+  default: () => index_default,
+  loader: () => loader
 });
 
 // app/component/Task.tsx
-var import_react3 = require("react"), import_flowbite_react = require("flowbite-react"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime");
+var import_react3 = require("react"), import_flowbite_react = require("flowbite-react"), import_react4 = require("@remix-run/react"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime");
 function Task() {
-  let img_src = "https://www.researchgate.net/publication/220390292/figure/fig5/AS:669089911541766@1536534874234/Sample-copy-of-the-original-Tibetan-text.ppm", text = "kajsdifjaoisjdfoiajsoidfjaoisjdfioajsdoifjaoidfjoaisjdfoija", [textInput, setInput] = (0, import_react3.useState)(text);
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "h-full w-full flex justify-center items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex flex-1 max-w-4xl rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col", children: [
+  let { task } = (0, import_react4.useLoaderData)(), [textInput, setInput] = (0, import_react3.useState)(task?.text), fetcher = (0, import_react4.useFetcher)();
+  function handleSubmit() {
+    fetcher.submit(
+      {
+        _action: "accept_task",
+        text: textInput,
+        taskId: task.id
+      },
+      { method: "POST" }
+    );
+  }
+  function handleReject() {
+    fetcher.submit(
+      {
+        _action: "reject_task",
+        taskId: task.id
+      },
+      { method: "POST" }
+    );
+  }
+  return task ? /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "h-full w-full flex justify-center items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex flex-1 max-w-4xl rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
       "img",
       {
-        src: img_src,
+        src: task.imageUrl,
         alt: "Google",
-        className: "max-h-[40vh] object-contain"
+        className: "h-[40vh] w-full object-contain"
       },
       void 0,
       !1,
       {
         fileName: "app/component/Task.tsx",
-        lineNumber: 12,
+        lineNumber: 33,
         columnNumber: 9
       },
       this
     ),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "w-full", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mb-2 block w-6/12 mx-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Label, { htmlFor: "comment", value: "transcribe" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mb-2 block w-6/12 mx-auto font-Elsie", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Label, { htmlFor: "comment", value: "transcribe" }, void 0, !1, {
         fileName: "app/component/Task.tsx",
-        lineNumber: 19,
+        lineNumber: 40,
         columnNumber: 13
       }, this) }, void 0, !1, {
         fileName: "app/component/Task.tsx",
-        lineNumber: 18,
+        lineNumber: 39,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
@@ -258,57 +279,113 @@ function Task() {
         !1,
         {
           fileName: "app/component/Task.tsx",
-          lineNumber: 21,
+          lineNumber: 42,
           columnNumber: 11
         },
         this
       )
     ] }, void 0, !0, {
       fileName: "app/component/Task.tsx",
-      lineNumber: 17,
+      lineNumber: 38,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex gap-3 justify-around items-center mt-2", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Button, { className: "bg-green-500 hover:bg-green-400", children: "Submit" }, void 0, !1, {
-        fileName: "app/component/Task.tsx",
-        lineNumber: 32,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Button, { className: "bg-red-500 hover:bg-red-400", children: "Reject" }, void 0, !1, {
-        fileName: "app/component/Task.tsx",
-        lineNumber: 33,
-        columnNumber: 11
-      }, this)
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex gap-3 justify-around items-center my-2", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+        import_flowbite_react.Button,
+        {
+          className: "bg-green-500 hover:bg-green-400",
+          onClick: handleSubmit,
+          children: "Submit"
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/component/Task.tsx",
+          lineNumber: 53,
+          columnNumber: 11
+        },
+        this
+      ),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+        import_flowbite_react.Button,
+        {
+          className: "bg-red-500 hover:bg-red-400",
+          onClick: handleReject,
+          children: "Reject"
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/component/Task.tsx",
+          lineNumber: 59,
+          columnNumber: 11
+        },
+        this
+      )
     ] }, void 0, !0, {
       fileName: "app/component/Task.tsx",
-      lineNumber: 31,
+      lineNumber: 52,
       columnNumber: 9
     }, this)
   ] }, void 0, !0, {
     fileName: "app/component/Task.tsx",
-    lineNumber: 11,
+    lineNumber: 32,
     columnNumber: 7
   }, this) }, void 0, !1, {
     fileName: "app/component/Task.tsx",
-    lineNumber: 10,
+    lineNumber: 31,
     columnNumber: 5
+  }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: "thanks the work is done" }, void 0, !1, {
+    fileName: "app/component/Task.tsx",
+    lineNumber: 29,
+    columnNumber: 21
   }, this);
 }
 var Task_default = Task;
 
+// app/service/db.server.ts
+var import_client = require("@prisma/client"), db;
+global.__db || (global.__db = new import_client.PrismaClient()), db = global.__db;
+
 // app/routes/_index.tsx
-var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
+var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime"), loader = async () => ({ task: await db.task.findFirst({
+  where: {
+    status: null
+  }
+}) }), action = async ({ request }) => {
+  let formdata = await request.formData(), action2 = formdata.get("_action"), taskId = formdata.get("taskId");
+  if (action2 === "accept_task") {
+    let text = formdata.get("text");
+    await db.task.update({
+      where: {
+        id: parseInt(taskId)
+      },
+      data: {
+        status: "accepted",
+        text
+      }
+    });
+  }
+  return action2 === "reject_task" && await db.task.update({
+    where: {
+      id: parseInt(taskId)
+    },
+    data: {
+      status: "rejected"
+    }
+  }), null;
+};
 function Index() {
   return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Task_default, {}, void 0, !1, {
     fileName: "app/routes/_index.tsx",
-    lineNumber: 5,
+    lineNumber: 44,
     columnNumber: 10
   }, this);
 }
 var index_default = Index;
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-KJST7XCD.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-J4GLYRZ6.js", "/build/_shared/chunk-YJEIG4AS.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-5J3DZWOA.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-T6BDMP72.js", imports: ["/build/_shared/chunk-NMZL6IDN.js"], hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 } }, version: "cf061b1a", hmr: { runtime: "/build/_shared\\chunk-YJEIG4AS.js", timestamp: 1699342672868 }, url: "/build/manifest-CF061B1A.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-KJST7XCD.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-J4GLYRZ6.js", "/build/_shared/chunk-YJEIG4AS.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-Z2MXST2Y.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-YJJKUYBD.js", imports: ["/build/_shared/chunk-NMZL6IDN.js"], hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 } }, version: "89968e82", hmr: { runtime: "/build/_shared\\chunk-YJEIG4AS.js", timestamp: 1699382161071 }, url: "/build/manifest-89968E82.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var mode = "development", assetsBuildDirectory = "public\\build", future = { v3_fetcherPersist: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
