@@ -1,9 +1,10 @@
 {
   "type": "commonjs",
   "scripts": {
-    "start": "remix run",
     "build": "remix build",
-    "dev": "remix dev"
+    "dev": "remix dev --manual -c \"node server.js\"",
+    "start": "cross-env NODE_ENV=production node server.js",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@prisma/client": "^4.16.2",
@@ -15,8 +16,7 @@
     "isbot": "^3.7.0",
     "postcss": "^8.4.31",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "remix": "^2.2.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.2.0",
