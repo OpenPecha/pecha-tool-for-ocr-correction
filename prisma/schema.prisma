@@ -17,6 +17,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   role      String   @default("user")
+  isAdmin   Boolean?
 }
 
 model Task{

@@ -145,7 +145,7 @@ __export(root_exports, {
 var import_react2 = require("@remix-run/react");
 
 // app/style/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-NP744Q3J.css";
+var tailwind_default = "/build/_assets/tailwind-6SCUU2QQ.css";
 
 // app/style/global.css
 var global_default = "/build/_assets/global-VACHWU72.css";
@@ -206,24 +206,267 @@ function App() {
   }, this);
 }
 
+// app/routes/admin.task.tsx
+var admin_task_exports = {};
+__export(admin_task_exports, {
+  default: () => admin_task_default
+});
+var import_jsx_dev_runtime3 = require("react/jsx-dev-runtime");
+function AdminTask() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: "AdminTask" }, void 0, !1, {
+    fileName: "app/routes/admin.task.tsx",
+    lineNumber: 4,
+    columnNumber: 10
+  }, this);
+}
+var admin_task_default = AdminTask;
+
+// app/routes/admin.user.tsx
+var admin_user_exports = {};
+__export(admin_user_exports, {
+  action: () => action,
+  default: () => admin_user_default,
+  loader: () => loader
+});
+var import_react3 = require("react");
+
+// app/service/db.server.ts
+var import_client = require("@prisma/client"), db;
+global.__db || (global.__db = new import_client.PrismaClient()), db = global.__db;
+
+// app/routes/admin.user.tsx
+var import_react4 = require("@remix-run/react"), import_flowbite_react = require("flowbite-react"), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime"), loader = async ({ request }) => ({ users: await db.user.findMany({
+  orderBy: {
+    isAdmin: "asc"
+  }
+}) }), action = async ({ request }) => {
+  let formdata = await request.formData(), _action = formdata.get("_action"), userId = formdata.get("userId");
+  if (_action === "role_change") {
+    let role = formdata.get("role");
+    return await db.user.update({
+      where: {
+        id: userId
+      },
+      data: {
+        role
+      }
+    });
+  }
+  if (_action === "isAdmin_change") {
+    let checked = formdata.get("checked");
+    return await db.user.update({
+      where: { id: userId },
+      data: {
+        isAdmin: checked === "true"
+      }
+    });
+  }
+  return null;
+};
+function AdminUser() {
+  let { users } = (0, import_react4.useLoaderData)(), [search, setSearch] = (0, import_react3.useState)("");
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex flex-col gap-2 my-2", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+      import_flowbite_react.TextInput,
+      {
+        value: search,
+        onChange: (e) => setSearch(e.target.value),
+        type: "email",
+        placeholder: "search eg.name@flowbite.com"
+      },
+      void 0,
+      !1,
+      {
+        fileName: "app/routes/admin.user.tsx",
+        lineNumber: 48,
+        columnNumber: 7
+      },
+      this
+    ),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table, { hoverable: !0, children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.Head, { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "id" }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 56,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "email" }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 57,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "isAdmin" }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 58,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "role" }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 60,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "created At" }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 61,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("span", { className: "sr-only", children: "Edit" }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 63,
+          columnNumber: 13
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 62,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/routes/admin.user.tsx",
+        lineNumber: 55,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.Body, { className: "divide-y", children: users.filter(
+        (item) => item.email?.toLowerCase().includes(search.toLowerCase())
+      ).map((user) => /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(EachUser, { user }, void 0, !1, {
+        fileName: "app/routes/admin.user.tsx",
+        lineNumber: 72,
+        columnNumber: 22
+      }, this)) }, void 0, !1, {
+        fileName: "app/routes/admin.user.tsx",
+        lineNumber: 66,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/routes/admin.user.tsx",
+      lineNumber: 54,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/admin.user.tsx",
+    lineNumber: 47,
+    columnNumber: 5
+  }, this);
+}
+var admin_user_default = AdminUser;
+function EachUser({ user }) {
+  let fetcher = (0, import_react4.useFetcher)(), handleRoleChange = (e) => {
+    let newRole = e.target.value;
+    fetcher.submit(
+      {
+        _action: "role_change",
+        userId: user.id,
+        role: newRole
+      },
+      {
+        method: "POST"
+      }
+    );
+  }, handleIsAdmin = (e) => {
+    let isAdmin = e.target.checked;
+    fetcher.submit(
+      {
+        _action: "isAdmin_change",
+        userId: user.id,
+        checked: isAdmin
+      },
+      {
+        method: "POST"
+      }
+    );
+  };
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+    import_flowbite_react.Table.Row,
+    {
+      className: "bg-white dark:border-gray-700 dark:bg-gray-800",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.Cell, { className: "whitespace-nowrap font-medium text-gray-900 dark:text-white", children: user.id }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 115,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.Cell, { children: user.email }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 118,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.Cell, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Checkbox, { checked: !!user.isAdmin, onChange: handleIsAdmin }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 120,
+          columnNumber: 9
+        }, this) }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 119,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.Cell, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+          import_flowbite_react.Select,
+          {
+            disabled: fetcher.state !== "idle",
+            onChange: handleRoleChange,
+            value: user?.role,
+            className: "w-32",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("option", { children: "user" }, void 0, !1, {
+                fileName: "app/routes/admin.user.tsx",
+                lineNumber: 130,
+                columnNumber: 11
+              }, this),
+              /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("option", { children: "annotator" }, void 0, !1, {
+                fileName: "app/routes/admin.user.tsx",
+                lineNumber: 131,
+                columnNumber: 11
+              }, this)
+            ]
+          },
+          void 0,
+          !0,
+          {
+            fileName: "app/routes/admin.user.tsx",
+            lineNumber: 124,
+            columnNumber: 9
+          },
+          this
+        ) }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 123,
+          columnNumber: 7
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_flowbite_react.Table.Cell, { children: user?.createdAt }, void 0, !1, {
+          fileName: "app/routes/admin.user.tsx",
+          lineNumber: 134,
+          columnNumber: 7
+        }, this)
+      ]
+    },
+    user.id,
+    !0,
+    {
+      fileName: "app/routes/admin.user.tsx",
+      lineNumber: 111,
+      columnNumber: 5
+    },
+    this
+  );
+}
+
 // app/routes/_index.tsx
 var index_exports = {};
 __export(index_exports, {
-  action: () => action,
+  action: () => action2,
   default: () => index_default,
-  loader: () => loader
+  loader: () => loader2
 });
 
 // app/component/Task.tsx
-var import_react3 = require("react"), import_flowbite_react = require("flowbite-react"), import_react4 = require("@remix-run/react"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime");
+var import_react5 = require("react"), import_flowbite_react2 = require("flowbite-react"), import_react6 = require("@remix-run/react"), import_jsx_dev_runtime5 = require("react/jsx-dev-runtime");
 function Task() {
-  let { task } = (0, import_react4.useLoaderData)(), [textInput, setInput] = (0, import_react3.useState)(task?.text), fetcher = (0, import_react4.useFetcher)();
+  let { task, user } = (0, import_react6.useLoaderData)(), [textInput, setInput] = (0, import_react5.useState)(task?.text), fetcher = (0, import_react6.useFetcher)();
   function handleSubmit() {
     fetcher.submit(
       {
         _action: "accept_task",
         text: textInput,
-        taskId: task.id
+        taskId: task.id,
+        userId: user.id
       },
       { method: "POST" }
     );
@@ -237,8 +480,8 @@ function Task() {
       { method: "POST" }
     );
   }
-  return task ? /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "h-full w-full flex justify-center items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex flex-1 max-w-4xl rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+  return task ? /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "h-full w-full flex justify-center items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-1 max-w-4xl rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
       "img",
       {
         src: task.imageUrl,
@@ -249,28 +492,39 @@ function Task() {
       !1,
       {
         fileName: "app/component/Task.tsx",
-        lineNumber: 33,
+        lineNumber: 39,
         columnNumber: 9
       },
       this
     ),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "w-full", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mb-2 block w-6/12 mx-auto font-Elsie", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Label, { htmlFor: "comment", value: "transcribe" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "w-full flex flex-col p-3", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "mb-2 block ", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+        import_flowbite_react2.Label,
+        {
+          htmlFor: "comment",
+          className: "text-gray-400 font-Elsie",
+          value: "transcribe"
+        },
+        void 0,
+        !1,
+        {
+          fileName: "app/component/Task.tsx",
+          lineNumber: 46,
+          columnNumber: 13
+        },
+        this
+      ) }, void 0, !1, {
         fileName: "app/component/Task.tsx",
-        lineNumber: 40,
-        columnNumber: 13
-      }, this) }, void 0, !1, {
-        fileName: "app/component/Task.tsx",
-        lineNumber: 39,
+        lineNumber: 45,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
-        import_flowbite_react.Textarea,
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+        import_flowbite_react2.Textarea,
         {
           id: "comment",
           placeholder: "Leave a comment...",
           required: !0,
-          className: "w-6/12 mx-auto overflow-auto",
+          className: "flex-1   overflow-auto",
           rows: 4,
           value: textInput,
           onChange: (e) => setInput(e.target.value)
@@ -279,21 +533,21 @@ function Task() {
         !1,
         {
           fileName: "app/component/Task.tsx",
-          lineNumber: 42,
+          lineNumber: 52,
           columnNumber: 11
         },
         this
       )
     ] }, void 0, !0, {
       fileName: "app/component/Task.tsx",
-      lineNumber: 38,
+      lineNumber: 44,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex gap-3 justify-around items-center my-2", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
-        import_flowbite_react.Button,
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex gap-3 justify-around items-center my-2", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+        import_flowbite_react2.Button,
         {
-          className: "bg-green-500 hover:bg-green-400",
+          className: "  bg-green-500 font-Elsie hover:bg-green-400",
           onClick: handleSubmit,
           children: "Submit"
         },
@@ -301,15 +555,15 @@ function Task() {
         !1,
         {
           fileName: "app/component/Task.tsx",
-          lineNumber: 53,
+          lineNumber: 63,
           columnNumber: 11
         },
         this
       ),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
-        import_flowbite_react.Button,
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+        import_flowbite_react2.Button,
         {
-          className: "bg-red-500 hover:bg-red-400",
+          className: "bg-red-500 font-Elsie hover:bg-red-400",
           onClick: handleReject,
           children: "Reject"
         },
@@ -317,44 +571,113 @@ function Task() {
         !1,
         {
           fileName: "app/component/Task.tsx",
-          lineNumber: 59,
+          lineNumber: 69,
           columnNumber: 11
         },
         this
       )
     ] }, void 0, !0, {
       fileName: "app/component/Task.tsx",
-      lineNumber: 52,
+      lineNumber: 62,
       columnNumber: 9
     }, this)
   ] }, void 0, !0, {
     fileName: "app/component/Task.tsx",
-    lineNumber: 32,
+    lineNumber: 38,
     columnNumber: 7
   }, this) }, void 0, !1, {
     fileName: "app/component/Task.tsx",
-    lineNumber: 31,
+    lineNumber: 37,
     columnNumber: 5
-  }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: "thanks the work is done" }, void 0, !1, {
+  }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "mt-10 flex justify-center w-full", children: "thanks the work is done" }, void 0, !1, {
     fileName: "app/component/Task.tsx",
-    lineNumber: 29,
-    columnNumber: 21
+    lineNumber: 32,
+    columnNumber: 7
   }, this);
 }
 var Task_default = Task;
 
-// app/service/db.server.ts
-var import_client = require("@prisma/client"), db;
-global.__db || (global.__db = new import_client.PrismaClient()), db = global.__db;
+// app/component/Sidebar.tsx
+var import_flowbite_react3 = require("flowbite-react"), import_hi = require("react-icons/hi"), import_react7 = require("@remix-run/react"), import_jsx_dev_runtime6 = require("react/jsx-dev-runtime");
+function Sidebar_Container() {
+  let { task, user } = (0, import_react7.useLoaderData)();
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+    import_flowbite_react3.Sidebar,
+    {
+      className: "hidden md:block",
+      "aria-label": " Sidebar with multi-level dropdown example",
+      children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_flowbite_react3.Sidebar.Items, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_flowbite_react3.Sidebar.ItemGroup, { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_flowbite_react3.Sidebar.Item, { href: "#", icon: import_hi.HiChartPie, children: "Task" }, void 0, !1, {
+          fileName: "app/component/Sidebar.tsx",
+          lineNumber: 22,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_flowbite_react3.Sidebar.Item, { href: "#", icon: import_hi.HiInbox, children: [
+          "Id: ",
+          task.id
+        ] }, void 0, !0, {
+          fileName: "app/component/Sidebar.tsx",
+          lineNumber: 31,
+          columnNumber: 11
+        }, this),
+        user.isAdmin && /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_flowbite_react3.Sidebar.Item, { icon: import_hi.HiUser, children: /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_react7.Link, { to: `/admin/user/?session=${user.email}`, children: "Admin Panel" }, void 0, !1, {
+          fileName: "app/component/Sidebar.tsx",
+          lineNumber: 36,
+          columnNumber: 15
+        }, this) }, void 0, !1, {
+          fileName: "app/component/Sidebar.tsx",
+          lineNumber: 35,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/component/Sidebar.tsx",
+        lineNumber: 21,
+        columnNumber: 9
+      }, this) }, void 0, !1, {
+        fileName: "app/component/Sidebar.tsx",
+        lineNumber: 20,
+        columnNumber: 7
+      }, this)
+    },
+    void 0,
+    !1,
+    {
+      fileName: "app/component/Sidebar.tsx",
+      lineNumber: 16,
+      columnNumber: 5
+    },
+    this
+  );
+}
 
 // app/routes/_index.tsx
-var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime"), loader = async () => ({ task: await db.task.findFirst({
-  where: {
-    status: null
-  }
-}) }), action = async ({ request }) => {
-  let formdata = await request.formData(), action2 = formdata.get("_action"), taskId = formdata.get("taskId");
-  if (action2 === "accept_task") {
+var import_node2 = require("@remix-run/node"), import_jsx_dev_runtime7 = require("react/jsx-dev-runtime"), loader2 = async ({ request }) => {
+  let session = new URL(request.url).searchParams.get("session");
+  if (!session)
+    return (0, import_node2.redirect)("http://pecha.tools");
+  let user = await db.user.findUnique({
+    where: { email: session }
+  });
+  user || (user = await db.user.create({
+    data: {
+      email: session
+    }
+  }));
+  let task = user.role === "annotator" ? await db.task.findFirst({
+    where: {
+      status: null
+    },
+    orderBy: {
+      id: "asc"
+    }
+  }) : null;
+  return {
+    user,
+    task
+  };
+}, action2 = async ({ request }) => {
+  let formdata = await request.formData(), action3 = formdata.get("_action"), taskId = formdata.get("taskId"), userId = formdata.get("userId");
+  if (action3 === "accept_task") {
     let text = formdata.get("text");
     await db.task.update({
       where: {
@@ -362,11 +685,12 @@ var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime"), loader = async (
       },
       data: {
         status: "accepted",
-        text
+        text,
+        userId
       }
     });
   }
-  return action2 === "reject_task" && await db.task.update({
+  return action3 === "reject_task" && await db.task.update({
     where: {
       id: parseInt(taskId)
     },
@@ -376,16 +700,148 @@ var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime"), loader = async (
   }), null;
 };
 function Index() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Task_default, {}, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex h-full gap-3", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Sidebar_Container, {}, void 0, !1, {
+      fileName: "app/routes/_index.tsx",
+      lineNumber: 71,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Task_default, {}, void 0, !1, {
+      fileName: "app/routes/_index.tsx",
+      lineNumber: 72,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, !0, {
     fileName: "app/routes/_index.tsx",
-    lineNumber: 44,
-    columnNumber: 10
+    lineNumber: 70,
+    columnNumber: 5
   }, this);
 }
 var index_default = Index;
 
+// app/routes/admin.tsx
+var admin_exports = {};
+__export(admin_exports, {
+  default: () => admin_default,
+  loader: () => loader3
+});
+var import_react9 = require("@remix-run/react");
+
+// app/component/admin/Sidebar.tsx
+var import_flowbite_react4 = require("flowbite-react"), import_hi2 = require("react-icons/hi"), import_react8 = require("@remix-run/react"), import_jsx_dev_runtime8 = require("react/jsx-dev-runtime");
+function Sidebar_Container2() {
+  let { user } = (0, import_react8.useLoaderData)();
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(
+    import_flowbite_react4.Sidebar,
+    {
+      className: "hidden md:block",
+      "aria-label": " Sidebar with multi-level dropdown example",
+      children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_flowbite_react4.Sidebar.Items, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_flowbite_react4.Sidebar.ItemGroup, { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_flowbite_react4.Sidebar.Item, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_react8.Link, { to: `/?session=${user.email}`, children: "Home" }, void 0, !1, {
+          fileName: "app/component/admin/Sidebar.tsx",
+          lineNumber: 23,
+          columnNumber: 13
+        }, this) }, void 0, !1, {
+          fileName: "app/component/admin/Sidebar.tsx",
+          lineNumber: 22,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_flowbite_react4.Sidebar.Item, { icon: import_hi2.HiChartPie, children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(
+          import_react8.NavLink,
+          {
+            to: `/admin/user/?session=${user.email}`,
+            className: ({ isActive, isPending }) => isPending ? "bg-gray-400" : isActive ? "bg-slate-500 w-full block p-2 rounded text-white" : "",
+            children: "Users"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/component/admin/Sidebar.tsx",
+            lineNumber: 26,
+            columnNumber: 13
+          },
+          this
+        ) }, void 0, !1, {
+          fileName: "app/component/admin/Sidebar.tsx",
+          lineNumber: 25,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_flowbite_react4.Sidebar.Item, { icon: import_hi2.HiInbox, children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(
+          import_react8.NavLink,
+          {
+            to: `/admin/task/?session=${user.email}`,
+            className: ({ isActive, isPending }) => isPending ? "bg-gray-400" : isActive ? "bg-slate-500 w-full block p-2 rounded text-white" : "",
+            children: "Tasks"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/component/admin/Sidebar.tsx",
+            lineNumber: 40,
+            columnNumber: 13
+          },
+          this
+        ) }, void 0, !1, {
+          fileName: "app/component/admin/Sidebar.tsx",
+          lineNumber: 39,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/component/admin/Sidebar.tsx",
+        lineNumber: 21,
+        columnNumber: 9
+      }, this) }, void 0, !1, {
+        fileName: "app/component/admin/Sidebar.tsx",
+        lineNumber: 20,
+        columnNumber: 7
+      }, this)
+    },
+    void 0,
+    !1,
+    {
+      fileName: "app/component/admin/Sidebar.tsx",
+      lineNumber: 16,
+      columnNumber: 5
+    },
+    this
+  );
+}
+
+// app/routes/admin.tsx
+var import_node3 = require("@remix-run/node");
+var import_jsx_dev_runtime9 = require("react/jsx-dev-runtime"), loader3 = async ({ request }) => {
+  let session = new URL(request.url).searchParams.get("session");
+  if (!session)
+    return (0, import_node3.redirect)("https://pecha.tools");
+  let user = await db.user.findUnique({
+    where: {
+      email: session
+    }
+  });
+  return user?.isAdmin ? { user } : (0, import_node3.redirect)("/?session=" + session);
+};
+function admin() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex h-full gap-3", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(Sidebar_Container2, {}, void 0, !1, {
+      fileName: "app/routes/admin.tsx",
+      lineNumber: 23,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(import_react9.Outlet, {}, void 0, !1, {
+      fileName: "app/routes/admin.tsx",
+      lineNumber: 24,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/admin.tsx",
+    lineNumber: 22,
+    columnNumber: 5
+  }, this);
+}
+var admin_default = admin;
+
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-KJST7XCD.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-J4GLYRZ6.js", "/build/_shared/chunk-YJEIG4AS.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-Z2MXST2Y.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-YJJKUYBD.js", imports: ["/build/_shared/chunk-NMZL6IDN.js"], hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 } }, version: "89968e82", hmr: { runtime: "/build/_shared\\chunk-YJEIG4AS.js", timestamp: 1699382161071 }, url: "/build/manifest-89968E82.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-VAYZZIPM.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-J4GLYRZ6.js", "/build/_shared/chunk-YJEIG4AS.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-GKB6D5R3.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-KSGGXD5Z.js", imports: ["/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-VND2STOW.js", "/build/_shared/chunk-NMZL6IDN.js"], hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 }, "routes/admin": { id: "routes/admin", parentId: "root", path: "admin", index: void 0, caseSensitive: void 0, module: "/build/routes/admin-V2SW3LPF.js", imports: ["/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-VND2STOW.js", "/build/_shared/chunk-NMZL6IDN.js"], hasAction: !1, hasLoader: !0, hasErrorBoundary: !1 }, "routes/admin.task": { id: "routes/admin.task", parentId: "routes/admin", path: "task", index: void 0, caseSensitive: void 0, module: "/build/routes/admin.task-WYOSTUAV.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/admin.user": { id: "routes/admin.user", parentId: "routes/admin", path: "user", index: void 0, caseSensitive: void 0, module: "/build/routes/admin.user-RC5G4QN7.js", imports: void 0, hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 } }, version: "43d347b5", hmr: { runtime: "/build/_shared\\chunk-YJEIG4AS.js", timestamp: 1699420216113 }, url: "/build/manifest-43D347B5.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var mode = "development", assetsBuildDirectory = "public\\build", future = { v3_fetcherPersist: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -397,6 +853,22 @@ var mode = "development", assetsBuildDirectory = "public\\build", future = { v3_
     caseSensitive: void 0,
     module: root_exports
   },
+  "routes/admin.task": {
+    id: "routes/admin.task",
+    parentId: "routes/admin",
+    path: "task",
+    index: void 0,
+    caseSensitive: void 0,
+    module: admin_task_exports
+  },
+  "routes/admin.user": {
+    id: "routes/admin.user",
+    parentId: "routes/admin",
+    path: "user",
+    index: void 0,
+    caseSensitive: void 0,
+    module: admin_user_exports
+  },
   "routes/_index": {
     id: "routes/_index",
     parentId: "root",
@@ -404,6 +876,14 @@ var mode = "development", assetsBuildDirectory = "public\\build", future = { v3_
     index: !0,
     caseSensitive: void 0,
     module: index_exports
+  },
+  "routes/admin": {
+    id: "routes/admin",
+    parentId: "root",
+    path: "admin",
+    index: void 0,
+    caseSensitive: void 0,
+    module: admin_exports
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

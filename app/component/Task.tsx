@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Label, Textarea, Button } from "flowbite-react";
 import { useLoaderData, useFetcher } from "@remix-run/react";
 function Task() {
-  let { task } = useLoaderData();
+  let { task, user } = useLoaderData();
   let [textInput, setInput] = useState(task?.text);
 
   let fetcher = useFetcher();
@@ -13,6 +13,7 @@ function Task() {
         _action: "accept_task",
         text: textInput,
         taskId: task.id,
+        userId: user.id,
       },
       { method: "POST" }
     );
@@ -26,7 +27,12 @@ function Task() {
       { method: "POST" }
     );
   }
-  if (!task) return <div>thanks the work is done</div>;
+  if (!task)
+    return (
+      <div className="mt-10 flex justify-center w-full">
+        thanks the work is done
+      </div>
+    );
   return (
     <div className="h-full w-full flex justify-center items-center">
       <div className="flex flex-1 max-w-4xl rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col">
@@ -35,15 +41,19 @@ function Task() {
           alt="Google"
           className="h-[40vh] w-full object-contain"
         />
-        <div className="w-full">
-          <div className="mb-2 block w-6/12 mx-auto font-Elsie">
-            <Label htmlFor="comment" value="transcribe" />
+        <div className="w-full flex flex-col p-3">
+          <div className="mb-2 block ">
+            <Label
+              htmlFor="comment"
+              className="text-gray-400 font-Elsie"
+              value="transcribe"
+            />
           </div>
           <Textarea
             id="comment"
             placeholder="Leave a comment..."
             required
-            className="w-6/12 mx-auto overflow-auto"
+            className="flex-1   overflow-auto"
             rows={4}
             value={textInput}
             onChange={(e) => setInput(e.target.value)}
@@ -51,13 +61,13 @@ function Task() {
         </div>
         <div className="flex gap-3 justify-around items-center my-2">
           <Button
-            className="bg-green-500 hover:bg-green-400"
+            className="  bg-green-500 font-Elsie hover:bg-green-400"
             onClick={handleSubmit}
           >
             Submit
           </Button>
           <Button
-            className="bg-red-500 hover:bg-red-400"
+            className="bg-red-500 font-Elsie hover:bg-red-400"
             onClick={handleReject}
           >
             Reject
