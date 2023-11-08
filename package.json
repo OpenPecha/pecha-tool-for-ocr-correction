@@ -12,6 +12,7 @@
     "@remix-run/react": "^2.2.0",
     "@remix-run/serve": "^2.2.0",
     "autoprefixer": "^10.4.16",
+    "cross-env": "^7.0.3",
     "flowbite-react": "^0.6.4",
     "isbot": "^3.7.0",
     "postcss": "^8.4.31",
