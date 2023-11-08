@@ -17,7 +17,9 @@
     "isbot": "^3.7.0",
     "postcss": "^8.4.31",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-virtualized-auto-sizer": "^1.0.20",
+    "react-window": "^1.8.9"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.2.0",

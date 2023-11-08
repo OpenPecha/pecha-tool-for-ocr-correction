@@ -18,15 +18,17 @@ model User {
   updatedAt DateTime @updatedAt
   role      String   @default("user")
   isAdmin   Boolean?
+  tasks     Task[]
 }
 
 model Task{
-  id        Int   @id
+  id        Int   @id @default(autoincrement())
   imageUrl  String
   text      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  userId    String
+  user      User?     @relation(fields: [userId], references: [id])
+  userId    String?
   status    Status? 
 }
 

@@ -63,7 +63,7 @@ function AdminUser() {
             <span className="sr-only">Edit</span>
           </Table.HeadCell>
         </Table.Head>
-        <Table.Body className="divide-y">
+        <Table.Body className="divide-y max-h-screen  overflow-y-scroll">
           {users
             .filter((item) =>
               item.email?.toLowerCase().includes(search.toLowerCase())

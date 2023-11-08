@@ -19,7 +19,7 @@ export const loader = async ({ request }) => {
 
 function admin() {
   return (
-    <div className="flex h-full gap-3">
+    <div className="flex h-full gap-3 overflow-hidden">
       <Sidebar_Container />
       <Outlet />
     </div>

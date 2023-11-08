@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Label, Textarea, Button } from "flowbite-react";
 import { useLoaderData, useFetcher } from "@remix-run/react";
+import { RxCross2 } from "react-icons/rx";
+import { TiTick } from "react-icons/ti";
 function Task() {
   let { task, user } = useLoaderData();
   let [textInput, setInput] = useState(task?.text);
@@ -23,6 +25,7 @@ function Task() {
       {
         _action: "reject_task",
         taskId: task.id,
+        userId: user.id,
       },
       { method: "POST" }
     );
@@ -36,6 +39,7 @@ function Task() {
   return (
     <div className="h-full w-full flex justify-center items-center">
       <div className="flex flex-1 max-w-4xl rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col">
+        <span className="md:hidden text-gray-200 ml-3"> ID: {task.id}</span>
         <img
           src={task.imageUrl}
           alt="Google"
@@ -59,18 +63,20 @@ function Task() {
             onChange={(e) => setInput(e.target.value)}
           />
         </div>
-        <div className="flex gap-3 justify-around items-center my-2">
+        <div className="flex gap-3 justify-center items-center my-2">
           <Button
             className="  bg-green-500 font-Elsie hover:bg-green-400"
             onClick={handleSubmit}
+            title="submit"
           >
-            Submit
+            <TiTick size={30} />
           </Button>
           <Button
             className="bg-red-500 font-Elsie hover:bg-red-400"
             onClick={handleReject}
+            title="reject"
           >
-            Reject
+            <RxCross2 size={30} />
           </Button>
         </div>
       </div>

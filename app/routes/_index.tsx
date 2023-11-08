@@ -53,12 +53,14 @@ export const action = async ({ request }) => {
     });
   }
   if (action === "reject_task") {
+    console.log(userId);
     await db.task.update({
       where: {
         id: parseInt(taskId),
       },
       data: {
         status: "rejected",
+        userId,
       },
     });
   }
