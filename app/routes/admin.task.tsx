@@ -3,6 +3,7 @@ import { db } from "../service/db.server";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import { Button, FileInput, Table } from "flowbite-react";
 import { AiFillDelete } from "react-icons/ai";
+import Papa from "papaparse";
 export const loader = async () => {
   let tasks = await db.task.findMany({
     select: {
@@ -44,34 +45,24 @@ export const action = async ({ request }) => {
 
 function AdminTask() {
   let { tasks } = useLoaderData();
-
+  let [fileData, setFileData] = React.useState([]);
   const [jsonData, setJsonData] = React.useState(null);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (event) => {
-        try {
-          const json = JSON.parse(event.target.result);
-          console.log(json);
-          setJsonData(json);
-        } catch (error) {
-          console.error("Error parsing JSON:", error);
-          setJsonData(null);
-        }
-      };
-
-      reader.readAsText(file);
-    }
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: async function (results) {
+        setFileData(results?.data);
+      },
+    });
   };
   let fetcher = useFetcher();
   function handleUpload() {
     fetcher.submit(
       {
         _action: "upload_task",
-        data: JSON.stringify(jsonData),
+        data: JSON.stringify(fileData),
       },
       {
         method: "POST",
@@ -86,7 +77,7 @@ function AdminTask() {
         <div className="flex flex-col">
           <FileInput
             type="file"
-            accept=".json"
+            accept=".csv"
             onChange={handleFileChange}
             helperText="file should be a .json type with array of objects with imageUrl and text"
           />
@@ -104,7 +95,7 @@ function AdminTask() {
           </Table.Head>
           <Table.Body className="divide-y flex-1 w-full ">
             {tasks.map((task) => {
-              return <EachTask task={task} />;
+              return <EachTask task={task} key={task.id} />;
             })}
           </Table.Body>
         </Table>
@@ -130,10 +121,7 @@ function EachTask({ task }) {
     );
   }
   return (
-    <Table.Row
-      key={task.id}
-      className="bg-white dark:border-gray-700 dark:bg-gray-800"
-    >
+    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
       <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
         {task.id}
       </Table.Cell>
