@@ -2,6 +2,7 @@ import React from "react";
 import { db } from "../service/db.server";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import { Button, FileInput, Table } from "flowbite-react";
+import { AiFillDelete } from "react-icons/ai";
 export const loader = async () => {
   let tasks = await db.task.findMany({
     select: {
@@ -19,16 +20,25 @@ export const loader = async () => {
 
 export const action = async ({ request }) => {
   let formdata = await request.formData();
+  let _action = formdata.get("_action");
   let data = formdata.get("data");
-  data = JSON.parse(data);
-  let inputdata = data.map((d) => ({ imageUrl: d.imageUrl, text: d.text }));
-  try {
-    let res = await db.task.createMany({
-      data: inputdata,
+  if (_action === "upload_task") {
+    data = JSON.parse(data);
+    let inputdata = data.map((d) => ({ imageUrl: d.imageUrl, text: d.text }));
+    try {
+      let res = await db.task.createMany({
+        data: inputdata,
+      });
+      return res;
+    } catch (e) {
+      return { error: "error : " + e };
+    }
+  }
+  if (_action === "delete_task") {
+    let id = formdata.get("id");
+    return await db.task.delete({
+      where: { id: parseInt(id) },
     });
-    return res;
-  } catch (e) {
-    return { error: "error : " + e };
   }
 };
 
@@ -69,15 +79,6 @@ function AdminTask() {
     );
   }
 
-  const renderRow = ({ index, style, key }) => (
-    <div
-      className={index % 2 ? "bg-gray-200" : "bg-gray-400"}
-      key={key}
-      style={style}
-    >
-      <EachTask task={tasks[index]} />
-    </div>
-  );
   return (
     <div className=" h-[100dvh] w-full flex gap-3 flex-col my-5 ">
       <div className="flex gap-2">
@@ -98,7 +99,8 @@ function AdminTask() {
             <Table.HeadCell>id</Table.HeadCell>
             <Table.HeadCell>image</Table.HeadCell>
             <Table.HeadCell>text</Table.HeadCell>
-            <Table.HeadCell>user</Table.HeadCell>
+            <Table.HeadCell>Annotator</Table.HeadCell>
+            <Table.HeadCell>action</Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y flex-1 w-full ">
             {tasks.map((task) => {
@@ -115,6 +117,18 @@ export default AdminTask;
 
 function EachTask({ task }) {
   let [showAll, setShowAll] = React.useState(false);
+  let fetcher = useFetcher();
+  function handleDelete() {
+    fetcher.submit(
+      {
+        _action: "delete_task",
+        id: task.id,
+      },
+      {
+        method: "POST",
+      }
+    );
+  }
   return (
     <Table.Row
       key={task.id}
@@ -146,6 +160,11 @@ function EachTask({ task }) {
         )}
       </Table.Cell>
       <Table.Cell>{task?.user?.email}</Table.Cell>
+      <Table.Cell>
+        <Button onClick={handleDelete}>
+          <AiFillDelete />
+        </Button>
+      </Table.Cell>
     </Table.Row>
   );
 }
