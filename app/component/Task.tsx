@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Label, Textarea, Button } from "flowbite-react";
 import { useLoaderData, useFetcher } from "@remix-run/react";
 import { RxCross2 } from "react-icons/rx";
@@ -7,6 +7,9 @@ function Task() {
   let { task, user } = useLoaderData();
   let [textInput, setInput] = useState(task?.text);
 
+  useEffect(() => {
+    setInput(task?.text);
+  }, [task?.text]);
   let fetcher = useFetcher();
   const [isLandscape, setIsLandscape] = useState(false);
 

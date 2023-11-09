@@ -46,7 +46,6 @@ export const action = async ({ request }) => {
 function AdminTask() {
   let { tasks } = useLoaderData();
   let [fileData, setFileData] = React.useState([]);
-  const [jsonData, setJsonData] = React.useState(null);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     Papa.parse(file, {

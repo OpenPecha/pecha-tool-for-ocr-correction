@@ -261,7 +261,7 @@ var import_react4 = require("@remix-run/react"), import_flowbite_react = require
   }
 };
 function AdminTask() {
-  let { tasks } = (0, import_react4.useLoaderData)(), [fileData, setFileData] = import_react3.default.useState([]), [jsonData, setJsonData] = import_react3.default.useState(null), handleFileChange = (e) => {
+  let { tasks } = (0, import_react4.useLoaderData)(), [fileData, setFileData] = import_react3.default.useState([]), handleFileChange = (e) => {
     let file = e.target.files[0];
     import_papaparse.default.parse(file, {
       header: !0,
@@ -286,7 +286,7 @@ function AdminTask() {
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex gap-2", children: [
       fetcher?.data?.error && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("span", { children: fetcher?.data?.error }, void 0, !1, {
         fileName: "app/routes/admin.task.tsx",
-        lineNumber: 76,
+        lineNumber: 75,
         columnNumber: 34
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex flex-col", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
@@ -301,78 +301,78 @@ function AdminTask() {
         !1,
         {
           fileName: "app/routes/admin.task.tsx",
-          lineNumber: 78,
+          lineNumber: 77,
           columnNumber: 11
         },
         this
       ) }, void 0, !1, {
         fileName: "app/routes/admin.task.tsx",
-        lineNumber: 77,
+        lineNumber: 76,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Button, { onClick: handleUpload, children: "upload" }, void 0, !1, {
         fileName: "app/routes/admin.task.tsx",
-        lineNumber: 85,
+        lineNumber: 84,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 75,
+      lineNumber: 74,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "h-[88vh] overflow-y-scroll flex flex-col", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table, { hoverable: !0, children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.Head, { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "id" }, void 0, !1, {
           fileName: "app/routes/admin.task.tsx",
-          lineNumber: 90,
+          lineNumber: 89,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "image" }, void 0, !1, {
           fileName: "app/routes/admin.task.tsx",
-          lineNumber: 91,
+          lineNumber: 90,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "text" }, void 0, !1, {
           fileName: "app/routes/admin.task.tsx",
-          lineNumber: 92,
+          lineNumber: 91,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "Annotator" }, void 0, !1, {
           fileName: "app/routes/admin.task.tsx",
-          lineNumber: 93,
+          lineNumber: 92,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.HeadCell, { children: "action" }, void 0, !1, {
           fileName: "app/routes/admin.task.tsx",
-          lineNumber: 94,
+          lineNumber: 93,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/admin.task.tsx",
-        lineNumber: 89,
+        lineNumber: 88,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.Body, { className: "divide-y flex-1 w-full ", children: tasks.map((task) => /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(EachTask, { task }, task.id, !1, {
         fileName: "app/routes/admin.task.tsx",
-        lineNumber: 98,
+        lineNumber: 97,
         columnNumber: 22
       }, this)) }, void 0, !1, {
         fileName: "app/routes/admin.task.tsx",
-        lineNumber: 96,
+        lineNumber: 95,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 88,
+      lineNumber: 87,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 87,
+      lineNumber: 86,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/admin.task.tsx",
-    lineNumber: 74,
+    lineNumber: 73,
     columnNumber: 5
   }, this);
 }
@@ -393,16 +393,16 @@ function EachTask({ task }) {
   return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.Row, { className: "bg-white dark:border-gray-700 dark:bg-gray-800", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.Cell, { className: "whitespace-nowrap font-medium text-gray-900 dark:text-white", children: task.id }, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 125,
+      lineNumber: 124,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.Cell, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("a", { href: task.imageUrl, target: "_blank", children: "click" }, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 129,
+      lineNumber: 128,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 128,
+      lineNumber: 127,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.Cell, { children: showAll ? task.text : /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_jsx_dev_runtime3.Fragment, { children: [
@@ -420,41 +420,41 @@ function EachTask({ task }) {
         !1,
         {
           fileName: "app/routes/admin.task.tsx",
-          lineNumber: 139,
+          lineNumber: 138,
           columnNumber: 13
         },
         this
       )
     ] }, void 0, !0, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 137,
+      lineNumber: 136,
       columnNumber: 11
     }, this) }, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 133,
+      lineNumber: 132,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.Cell, { children: task?.user?.email }, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 150,
+      lineNumber: 149,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Table.Cell, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_flowbite_react.Button, { onClick: handleDelete, children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_ai.AiFillDelete, {}, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 153,
+      lineNumber: 152,
       columnNumber: 11
     }, this) }, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 152,
+      lineNumber: 151,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/admin.task.tsx",
-      lineNumber: 151,
+      lineNumber: 150,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/admin.task.tsx",
-    lineNumber: 124,
+    lineNumber: 123,
     columnNumber: 5
   }, this);
 }
@@ -691,7 +691,11 @@ __export(index_exports, {
 // app/component/Task.tsx
 var import_react7 = require("react"), import_flowbite_react3 = require("flowbite-react"), import_react8 = require("@remix-run/react"), import_rx = require("react-icons/rx"), import_ti = require("react-icons/ti"), import_jsx_dev_runtime5 = require("react/jsx-dev-runtime");
 function Task() {
-  let { task, user } = (0, import_react8.useLoaderData)(), [textInput, setInput] = (0, import_react7.useState)(task?.text), fetcher = (0, import_react8.useFetcher)(), [isLandscape, setIsLandscape] = (0, import_react7.useState)(!1), handleImageLoad = (event) => {
+  let { task, user } = (0, import_react8.useLoaderData)(), [textInput, setInput] = (0, import_react7.useState)(task?.text);
+  (0, import_react7.useEffect)(() => {
+    setInput(task?.text);
+  }, [task?.text]);
+  let fetcher = (0, import_react8.useFetcher)(), [isLandscape, setIsLandscape] = (0, import_react7.useState)(!1), handleImageLoad = (event) => {
     let { naturalWidth, naturalHeight } = event.target, landscape = naturalWidth > naturalHeight;
     setIsLandscape(landscape);
   };
@@ -730,7 +734,7 @@ function Task() {
             task.id
           ] }, void 0, !0, {
             fileName: "app/component/Task.tsx",
-            lineNumber: 53,
+            lineNumber: 56,
             columnNumber: 9
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
@@ -746,7 +750,7 @@ function Task() {
             !1,
             {
               fileName: "app/component/Task.tsx",
-              lineNumber: 54,
+              lineNumber: 57,
               columnNumber: 9
             },
             this
@@ -763,13 +767,13 @@ function Task() {
               !1,
               {
                 fileName: "app/component/Task.tsx",
-                lineNumber: 64,
+                lineNumber: 67,
                 columnNumber: 15
               },
               this
             ) }, void 0, !1, {
               fileName: "app/component/Task.tsx",
-              lineNumber: 63,
+              lineNumber: 66,
               columnNumber: 13
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
@@ -787,18 +791,18 @@ function Task() {
               !1,
               {
                 fileName: "app/component/Task.tsx",
-                lineNumber: 70,
+                lineNumber: 73,
                 columnNumber: 13
               },
               this
             )
           ] }, void 0, !0, {
             fileName: "app/component/Task.tsx",
-            lineNumber: 62,
+            lineNumber: 65,
             columnNumber: 11
           }, this) }, void 0, !1, {
             fileName: "app/component/Task.tsx",
-            lineNumber: 61,
+            lineNumber: 64,
             columnNumber: 9
           }, this)
         ]
@@ -807,7 +811,7 @@ function Task() {
       !0,
       {
         fileName: "app/component/Task.tsx",
-        lineNumber: 47,
+        lineNumber: 50,
         columnNumber: 7
       },
       this
@@ -821,7 +825,7 @@ function Task() {
           title: "submit",
           children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_ti.TiTick, { size: 30 }, void 0, !1, {
             fileName: "app/component/Task.tsx",
-            lineNumber: 88,
+            lineNumber: 91,
             columnNumber: 11
           }, this)
         },
@@ -829,7 +833,7 @@ function Task() {
         !1,
         {
           fileName: "app/component/Task.tsx",
-          lineNumber: 83,
+          lineNumber: 86,
           columnNumber: 9
         },
         this
@@ -842,7 +846,7 @@ function Task() {
           title: "reject",
           children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_rx.RxCross2, { size: 30 }, void 0, !1, {
             fileName: "app/component/Task.tsx",
-            lineNumber: 95,
+            lineNumber: 98,
             columnNumber: 11
           }, this)
         },
@@ -850,23 +854,23 @@ function Task() {
         !1,
         {
           fileName: "app/component/Task.tsx",
-          lineNumber: 90,
+          lineNumber: 93,
           columnNumber: 9
         },
         this
       )
     ] }, void 0, !0, {
       fileName: "app/component/Task.tsx",
-      lineNumber: 82,
+      lineNumber: 85,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/component/Task.tsx",
-    lineNumber: 46,
+    lineNumber: 49,
     columnNumber: 5
   }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "mt-10 flex justify-center w-full", children: "thanks the work is done" }, void 0, !1, {
     fileName: "app/component/Task.tsx",
-    lineNumber: 41,
+    lineNumber: 44,
     columnNumber: 7
   }, this);
 }
@@ -1130,7 +1134,7 @@ function admin() {
 var admin_default = admin;
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-VAYZZIPM.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-J4GLYRZ6.js", "/build/_shared/chunk-YJEIG4AS.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-KLCULNDS.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-2LRRIH7F.js", imports: ["/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-CK2LANOW.js", "/build/_shared/chunk-NMZL6IDN.js"], hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 }, "routes/admin": { id: "routes/admin", parentId: "root", path: "admin", index: void 0, caseSensitive: void 0, module: "/build/routes/admin-NNSGB4IZ.js", imports: ["/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-CK2LANOW.js", "/build/_shared/chunk-NMZL6IDN.js"], hasAction: !1, hasLoader: !0, hasErrorBoundary: !1 }, "routes/admin.task": { id: "routes/admin.task", parentId: "routes/admin", path: "task", index: void 0, caseSensitive: void 0, module: "/build/routes/admin.task-BWUU3T5Z.js", imports: void 0, hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 }, "routes/admin.user": { id: "routes/admin.user", parentId: "routes/admin", path: "user", index: void 0, caseSensitive: void 0, module: "/build/routes/admin.user-KB775WHW.js", imports: void 0, hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 } }, version: "e9b564fa", hmr: { runtime: "/build/_shared\\chunk-YJEIG4AS.js", timestamp: 1699531955777 }, url: "/build/manifest-E9B564FA.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-VAYZZIPM.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-J4GLYRZ6.js", "/build/_shared/chunk-YJEIG4AS.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-KLCULNDS.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-UO6DL5GO.js", imports: ["/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-CK2LANOW.js", "/build/_shared/chunk-NMZL6IDN.js"], hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 }, "routes/admin": { id: "routes/admin", parentId: "root", path: "admin", index: void 0, caseSensitive: void 0, module: "/build/routes/admin-NNSGB4IZ.js", imports: ["/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-CK2LANOW.js", "/build/_shared/chunk-NMZL6IDN.js"], hasAction: !1, hasLoader: !0, hasErrorBoundary: !1 }, "routes/admin.task": { id: "routes/admin.task", parentId: "routes/admin", path: "task", index: void 0, caseSensitive: void 0, module: "/build/routes/admin.task-DN52D74F.js", imports: void 0, hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 }, "routes/admin.user": { id: "routes/admin.user", parentId: "routes/admin", path: "user", index: void 0, caseSensitive: void 0, module: "/build/routes/admin.user-KB775WHW.js", imports: void 0, hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 } }, version: "a309b5af", hmr: { runtime: "/build/_shared\\chunk-YJEIG4AS.js", timestamp: 1699532404267 }, url: "/build/manifest-A309B5AF.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var mode = "development", assetsBuildDirectory = "public\\build", future = { v3_fetcherPersist: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
