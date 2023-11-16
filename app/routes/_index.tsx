@@ -3,6 +3,7 @@ import Task from "../component/Task";
 import { db } from "../service/db.server";
 import Sidebar_Container from "../component/Sidebar";
 import { redirect } from "@remix-run/node";
+import { getAndAssignTask } from "../modelAction/task";
 export const loader = async ({ request }) => {
   let url = new URL(request.url);
   let session = url.searchParams.get("session") as string;
@@ -17,17 +18,8 @@ export const loader = async ({ request }) => {
       },
     });
   }
-  let task =
-    user.role === "annotator"
-      ? await db.task.findFirst({
-          where: {
-            status: null,
-          },
-          orderBy: {
-            id: "asc",
-          },
-        })
-      : null;
+  let task = user.role === "annotator" ? await getAndAssignTask(user.id) : null;
+  console.log(task);
   return {
     user,
     task,
