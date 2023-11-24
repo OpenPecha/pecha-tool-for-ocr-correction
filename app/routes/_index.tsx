@@ -19,7 +19,6 @@ export const loader = async ({ request }) => {
     });
   }
   let task = user.role === "annotator" ? await getAndAssignTask(user.id) : null;
-  console.log(task);
   return {
     user,
     task,

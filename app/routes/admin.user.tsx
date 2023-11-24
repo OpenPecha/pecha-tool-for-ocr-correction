@@ -44,35 +44,37 @@ function AdminUser() {
   let { users } = useLoaderData();
   let [search, setSearch] = useState("");
   return (
-    <div className="flex flex-col gap-2 my-2">
+    <div className="flex flex-col gap-2 my-2 ">
       <TextInput
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         type="email"
         placeholder="search eg.name@flowbite.com"
       />
-      <Table hoverable>
-        <Table.Head>
-          <Table.HeadCell>id</Table.HeadCell>
-          <Table.HeadCell>email</Table.HeadCell>
-          <Table.HeadCell>isAdmin</Table.HeadCell>
+      <div className="max-h-[90dvh] overflow-y-auto">
+        <Table hoverable>
+          <Table.Head>
+            <Table.HeadCell>id</Table.HeadCell>
+            <Table.HeadCell>email</Table.HeadCell>
+            <Table.HeadCell>isAdmin</Table.HeadCell>
 
-          <Table.HeadCell>role</Table.HeadCell>
-          <Table.HeadCell>created At</Table.HeadCell>
-          <Table.HeadCell>
-            <span className="sr-only">Edit</span>
-          </Table.HeadCell>
-        </Table.Head>
-        <Table.Body className="divide-y max-h-screen  overflow-y-scroll">
-          {users
-            .filter((item) =>
-              item.email?.toLowerCase().includes(search.toLowerCase())
-            )
-            .map((user) => {
-              return <EachUser user={user} />;
-            })}
-        </Table.Body>
-      </Table>
+            <Table.HeadCell>role</Table.HeadCell>
+            <Table.HeadCell>created At</Table.HeadCell>
+            <Table.HeadCell>
+              <span className="sr-only">Edit</span>
+            </Table.HeadCell>
+          </Table.Head>
+          <Table.Body className="divide-y max-h-screen  overflow-y-scroll">
+            {users
+              .filter((item) =>
+                item.email?.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((user) => {
+                return <EachUser user={user} />;
+              })}
+          </Table.Body>
+        </Table>
+      </div>
     </div>
   );
 }
